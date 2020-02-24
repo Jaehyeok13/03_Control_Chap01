@@ -256,6 +256,37 @@ public class ControlPractice {
 	}
 	
 	
+	/*
+	 * 정수를 이용해서 4자리 비밀번호를 만들려고 하는데 이 때 4자리 정수를 입력 받아 각 자리 수에 중복되는 값이 없을 경우 ‘생성 성공’
+	 * 중복 값이 있으면 ‘중복 값 있음‘ 자리수가 안 맞으면 ‘자리 수 안 맞음‘ 출력 단, 제일 앞자리 수의 값은 1~9 사이 정수
+	 */
+	public void practice11() {
+		System.out.print("비밀번호 입력(1000 ~ 9999) : ");
+		int num = Integer.parseInt(sc.next());
+		String pw = String.valueOf(num);
+		boolean key = true;
+
+		if (num < 1000 || num > 9999) {
+			System.out.println("자리수 안마즘");
+			key = false;
+		} else {
+			for (int i = 0; i < pw.length(); i++) {
+				for (int j = 0; j < i; j++) {
+					if (pw.charAt(i) == pw.charAt(j)) {
+						key = false;
+						break;
+					}
+				}
+			}
+			if (key) {
+				System.out.println("성공");
+			} else {
+				System.out.println("실패");
+			}
+		}
+		System.out.println();
+	}
+	
 	public void practice10() {
 		System.out.println("===== 프로그램 시작 =====");
 		boolean key = true;
@@ -271,7 +302,8 @@ public class ControlPractice {
 			System.out.println("7. BMI");
 			System.out.println("8. 계산기");
 			System.out.println("9. P/F");
-			System.out.println("10. 프로그램 종료");
+			System.out.println("10. 4자리 비밀번호");
+			System.out.println("11. 프로그램 종료");
 			System.out.print("선택 : ");
 			
 			int select = Integer.parseInt(sc.next());
@@ -285,7 +317,8 @@ public class ControlPractice {
 			case 7: practice7();break;
 			case 8: practice8();break;
 			case 9: practice9();break;
-			case 10: System.out.println("프로그램을 종료 합니다."); key = false; break;
+			case 10: practice11();break;
+			case 11: System.out.println("프로그램을 종료 합니다."); key = false; break;
 			default : System.out.println("잘못 입력 하셨습니다.");break;
 			}
 		}
